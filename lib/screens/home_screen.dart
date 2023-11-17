@@ -11,12 +11,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final scrollController = ScrollController();
+  bool isLoading = false;
+  int page = 1;
   @override
 
   void initState(){
     super.initState();
     final apiProvider = Provider.of<ApiProvider>(context,listen: false );
-    apiProvider.getCharacters();
+    apiProvider.getCharacters(page);
+    scrollController.addListener(() async{
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        setState(() {
+          isLoading =true;
+        });
+        page++;
+        await apiProvider.getCharacters(page);
+        setState(() {
+          isLoading =false;
+        });
+        
+      }
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -33,7 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
       width: double.infinity,
       child: apiProvider.characters.isNotEmpty
       ?  CharacterList(
-        apiProvider: apiProvider,
+        apiProvider: apiProvider, 
+        scrollController: scrollController,
+        isLoading: isLoading,
       )
       : const Center(
         child: CircularProgressIndicator(),
@@ -45,9 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 class CharacterList extends StatelessWidget {
-  const CharacterList({super.key, required this.apiProvider});
+  const CharacterList({super.key, required this.apiProvider, required this.
+  scrollController, required this.isLoading});
 
   final ApiProvider apiProvider;
+  final ScrollController scrollController;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +80,12 @@ class CharacterList extends StatelessWidget {
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
         ),
-      itemCount: apiProvider.characters.length,
+      itemCount: isLoading ? apiProvider.characters.length +2 : apiProvider.characters.
+      length,
+      controller: scrollController,
       itemBuilder: (context, index){
+        if (index < apiProvider.characters.length) {
+        
         final character = apiProvider.characters[index];
         return GestureDetector(
           onTap: () {
@@ -81,6 +107,11 @@ class CharacterList extends StatelessWidget {
             ),
           ),
         );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
       },
     );
   }
