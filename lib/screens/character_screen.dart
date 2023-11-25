@@ -29,7 +29,7 @@ class characterScreen extends StatelessWidget {
               )),
             ),
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               height: size.height * 0.14,
               width: double.infinity,
               child: Row(
@@ -56,7 +56,7 @@ class characterScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Text(text1),
-          Text(text2, style: TextStyle(overflow: TextOverflow.ellipsis),),
+          Text(text2, style: const TextStyle(overflow: TextOverflow.ellipsis),),
         ],
       ),));
   }
