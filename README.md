@@ -1,16 +1,9 @@
-# rickandmortyapp
+App en Flutter que utiliza la API de Rick y Morty. Tecnologías utilizadas: Flutter, Provider, GoRouter, HTTP. Ofrece una experiencia interactiva y dinámica del universo de Rick y Morty."
 
-A new Flutter project.
 
-## Getting Started
+<img width="201" alt="1" src="https://github.com/chimydevs/RickAndMortyApp/assets/79487697/99a49a58-30b3-43cb-b52e-e03ac7e8cc31">
 
-This project is a starting point for a Flutter application.
+<img width="202" alt="2" src="https://github.com/chimydevs/RickAndMortyApp/assets/79487697/82a5d453-a174-45d0-96d9-2009d138edea">
 
-A few resources to get you started if this is your first Flutter project:
+<img width="200" alt="3" src="https://github.com/chimydevs/RickAndMortyApp/assets/79487697/cc0bf3ac-d5d9-421e-af53-feb376f9c963">
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
